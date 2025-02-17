@@ -14,8 +14,12 @@ severity=${2}
 
 if [ "${secerity}" != "WARNING" ] && [ "${severity}" != "ERROR" ]; then
 	echo "ERROR: severity must be one of WARNING or ERROR"
-	exit 1
-
+	if [ "${INVERT_ERROR}" = "" ]; then
+		exit 1
+	else
+		exit 0
+	fi
+fi
 if [ ${case_sensitive} = false ]; then
 	case_sensitive="--ignore-case"
 else
@@ -28,6 +32,9 @@ result=$(git grep --no-color ${case_sensitive} --line-number --extended-regexp -
 
 echo "${result}"
 
-if [ -n "${result}" ] && [ "${ENVIRONMENT}" != "test" ] && [ "${severity}" = "ERROR" ]; then
-  exit 1
+if [ -n "${result}" ] && [ "${severity}" = "ERROR" ]; then
+	if [ "${INVERT_ERROR}" = "" ]; then
+		exit 1
+elif [ "${INVERT_ERROR}" = "true" ]; then
+	exit 1
 fi
