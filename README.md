@@ -1,10 +1,12 @@
 # action-fixme-check
 
-Checks the code base for any terms ending with a colon, and fail the check if
-any are found. The default term is `FIXME:`. You can add or change the terms
+Checks the code base for any terms ending with a colon, and fail/pass the check if
+any are found depending on severity. The default term is `FIXME:`. You can add or change the terms
 using the `term` parameter, see [Installation](#Installation) below.
 Useful if you want to make sure that you don't miss any required changes in the
-code base before merging a PR.
+code base before merging a PR. The default severity is `ERROR`. If severity is set to
+`ERROR` if any terms are found the ci fails. If set to `WARNING` it passes but you
+will still have annotations.
 
 It runs very fast, taking only a few seconds to finish even on a very large
 codebase. All files in the repository will be read, including binary files (it
@@ -27,14 +29,15 @@ on: [push]
 
 jobs:
   fixmes:
-    name: FIXME check
+    name: FIXME annotate
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - uses: bbugh/action-fixme-check@master # or @ the latest release
+    - uses: actions/checkout@v4
+    - uses: rippleFCL/action-fixme-annotate@v0.1.0 # or @ the latest release
       with:
       	terms: 'WIP|FIXME' # optional, defaults to `FIXME`
       	case-sensitive: false  # optional, defaults to `true`
+        severity: "WARNING" # optinal, defaults to `ERROR`
 ```
 
 ## Support
