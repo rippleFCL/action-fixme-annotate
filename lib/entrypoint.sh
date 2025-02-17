@@ -35,6 +35,7 @@ echo "${result}"
 if [ -n "${result}" ] && [ "${severity}" = "ERROR" ]; then
 	if [ "${INVERT_PASS_ERROR}" = "" ]; then
 		exit 1
+	fi
 elif [ "${INVERT_PASS_ERROR}" = "true" ]; then
 	exit 1
 fi
