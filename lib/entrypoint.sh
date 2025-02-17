@@ -6,7 +6,6 @@
 matcher_path=`pwd`/git-grep-problem-matcher.json
 cp /git-grep-problem-matcher.json "$matcher_path"
 
-echo "::add-matcher::git-grep-problem-matcher.json"
 
 
 case_sensitive="${1}"
@@ -26,6 +25,7 @@ else
 	unset case_sensitive
 fi
 
+echo "::add-matcher::git-grep-problem-matcher.json"
 
 tag=${INPUT_TERMS:=FIXME}
 result=$(git grep --no-color ${case_sensitive} --line-number --extended-regexp -e "(${tag})+(:)" :^.github |  sed -e "s/^/${severity} /" )
