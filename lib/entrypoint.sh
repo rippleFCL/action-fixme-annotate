@@ -12,7 +12,7 @@ case_sensitive="${1}"
 severity=${2}
 
 if [ "${secerity}" != "WARNING" ] && [ "${severity}" != "ERROR" ]; then
-	echo "ERROR: severity must be one of WARNING or ERROR"
+	echo "::error:: severity must be one of WARNING or ERROR"
 	if [ "${INVERT_ERROR}" = "" ]; then
 		exit 1
 	else
