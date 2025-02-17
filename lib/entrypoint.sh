@@ -13,7 +13,7 @@ severity="${2}"
 
 if [ "${secerity}" != "WARNING" ] && [ "${severity}" != "ERROR" ]; then
 	echo "::error:: severity must be one of WARNING or ERROR"
-	if [ "${INVERT_ERROR}" = "" ]; then
+	if [ "${INVERT_SEVERITY_ERROR}" = "" ]; then
 		exit 1
 	else
 		exit 0
@@ -33,8 +33,8 @@ result=$(git grep --no-color ${case_sensitive} --line-number --extended-regexp -
 echo "${result}"
 
 if [ -n "${result}" ] && [ "${severity}" = "ERROR" ]; then
-	if [ "${INVERT_ERROR}" = "" ]; then
+	if [ "${INVERT_PASS_ERROR}" = "" ]; then
 		exit 1
-elif [ "${INVERT_ERROR}" = "true" ]; then
+elif [ "${INVERT_PASS_ERROR}" = "true" ]; then
 	exit 1
 fi

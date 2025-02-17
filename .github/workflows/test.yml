@@ -16,7 +16,7 @@ jobs:
           terms: "wip|fix|fixme"
           case-sensitive: true
         env:
-          INVERT_ERROR: test
+          INVERT_PASS_ERROR: test
 
   test-case-insensitive:
     runs-on: ubuntu-latest
@@ -27,7 +27,7 @@ jobs:
           terms: "wip|fix|fixme"
           case-sensitive: false
         env:
-          INVERT_ERROR: true
+          INVERT_PASS_ERROR: true
   test-case-severity-incorrect:
     runs-on: ubuntu-latest
     steps:
@@ -38,7 +38,7 @@ jobs:
           case-sensitive: false
           severity: "warning"
         env:
-          INVERT_ERROR: true
+          INVERT_SEVERITY_ERROR: true
   test-case-severity:
     runs-on: ubuntu-latest
     steps:
