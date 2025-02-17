@@ -9,7 +9,7 @@ cp /git-grep-problem-matcher.json "$matcher_path"
 
 
 case_sensitive="${1}"
-severity=${2}
+severity="${2}"
 
 if [ "${secerity}" != "WARNING" ] && [ "${severity}" != "ERROR" ]; then
 	echo "::error:: severity must be one of WARNING or ERROR"
