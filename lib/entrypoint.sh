@@ -12,6 +12,10 @@ echo "::add-matcher::git-grep-problem-matcher.json"
 case_sensitive="${1}"
 severity=${2}
 
+if [ "${secerity}" != "WARNING" ] && [ "${severity}" != "ERROR" ]; then
+	echo "ERROR: severity must be one of WARNING or ERROR"
+	exit 1
+
 if [ ${case_sensitive} = false ]; then
 	case_sensitive="--ignore-case"
 else
@@ -24,6 +28,6 @@ result=$(git grep --no-color ${case_sensitive} --line-number --extended-regexp -
 
 echo "${result}"
 
-if [ -n "${result}" ] && [ "${ENVIRONMENT}" != "test" ]; then
+if [ -n "${result}" ] && [ "${ENVIRONMENT}" != "test" ] && [ "${severity}" = "ERROR" ]; then
   exit 1
 fi
