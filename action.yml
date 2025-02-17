@@ -22,4 +22,4 @@ inputs:
   severity:
     description: "The severity seen in the annotation"
     required: false
-    default: "error"
+    default: "ERROR"
