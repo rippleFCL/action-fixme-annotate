@@ -1,5 +1,5 @@
 name: "FIXME annotate"
-description: "Check code for specific terms (FIXME, WIP, etc.) and pass (with code annotations) if any are found."
+description: "Check code for specific terms (FIXME, WIP, etc.) and pass/fail (with code annotations) if any are found."
 author: "@rippleFCL"
 branding:
   icon: "list"
